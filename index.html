@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clone da página de listagem de vídeos do YouTube feito com HTML e CSS, com foco em Grid Layout. Desafio de Projeto da Trilha de CSS da DIO.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Início — DevTube</title>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- ==================================================================
+       CABEÇALHO
+       Grid de 3 colunas: auto | 1fr | auto. A coluna do meio (1fr) absorve
+       o espaço que sobra, então a busca fica centralizada sem largura fixa.
+       ================================================================== -->
+  <header class="cabecalho">
+
+    <div class="cabecalho__esquerda">
+      <button class="botao-icone" type="button" aria-label="Alternar menu lateral">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      </button>
+
+      <a class="logo" href="#" aria-label="DevTube — página inicial">
+        <img src="assets/images/youtube-logo.png" width="656" height="145" alt="DevTube">
+      </a>
+    </div>
+
+    <form class="busca" role="search" action="#" method="get">
+      <label class="visualmente-oculto" for="campo-busca">Pesquisar no DevTube</label>
+      <input class="busca__campo" type="search" id="campo-busca" name="q"
+             placeholder="Pesquisar" autocomplete="off">
+      <button class="busca__botao" type="submit" aria-label="Pesquisar">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.87 20.17l-5.59-5.59A6.96 6.96 0 0017 10.5 7 7 0 103 10.5a7 7 0 0010.67 6.02l5.59 5.59zM10 15.5a5 5 0 115-5 5 5 0 01-5 5z"/></svg>
+      </button>
+    </form>
+
+    <div class="cabecalho__direita">
+      <button class="botao-icone" type="button" aria-label="Criar vídeo">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 6l2-2h-4l-2 2H4v12h16V6zm-2 9a4 4 0 114-4 4 4 0 01-4 4zm0-6a2 2 0 102 2 2 2 0 00-2-2z"/></svg>
+      </button>
+
+      <button class="botao-icone botao-icone--sino" type="button" aria-label="Notificações: 3 não lidas">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.91V4a1 1 0 00-2 0v1.09A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg>
+        <span class="sino__badge" aria-hidden="true">3</span>
+      </button>
+
+      <button class="avatar" type="button" aria-label="Sua conta">
+        <img src="assets/images/avatar-usuario.jpg" width="48" height="48" alt="">
+      </button>
+    </div>
+
+  </header>
+
+  <!-- ==================================================================
+       LAYOUT
+       Grid de 2 colunas: menu lateral de largura fixa + conteúdo flexível.
+       ================================================================== -->
+  <div class="layout">
+
+    <nav class="lateral" aria-labelledby="titulo-menu">
+      <h2 class="visualmente-oculto" id="titulo-menu">Menu principal</h2>
+
+      <ul class="menu">
+        <li>
+          <a class="menu__item menu__item--ativo" href="#" aria-current="page">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10v11h6v-7h4v7h6V10L12 3z"/></svg>
+            Início
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4a6 6 0 104.47 10L19 18.5 20.5 17l-4.5-4.5A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"/></svg>
+            Explorar
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/></svg>
+            Inscrições
+          </a>
+        </li>
+      </ul>
+
+      <hr class="menu__divisor">
+
+      <ul class="menu">
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3z"/></svg>
+            YouTube Music
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21l-1.45-1.32C5.4 15 2 11.9 2 8.2A4.2 4.2 0 016.2 4 4.6 4.6 0 0112 6.1 4.6 4.6 0 0117.8 4 4.2 4.2 0 0122 8.2c0 3.7-3.4 6.8-8.55 11.48z"/></svg>
+            Vídeos que gostei
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+            Assistir mais tarde
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20h14v-2H5zm7-16L6 10h4v4h4v-4h4z"/></svg>
+            Downloads
+          </a>
+        </li>
+      </ul>
+
+      <hr class="menu__divisor">
+
+      <ul class="menu">
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v16H4zm2 2v12h12V6z"/></svg>
+            Filmes
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3L1 9l11 6 9-4.91V17h2V9zM5 13.18v3.64L12 20l7-3.18v-3.64L12 16z"/></svg>
+            Aprender
+          </a>
+        </li>
+        <li>
+          <a class="menu__item" href="#">
+            <svg class="menu__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 3a7 7 0 11-7 7 7 7 0 017-7zm0 3a4 4 0 104 4 4 4 0 00-4-4z"/></svg>
+            Esportes
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ==================================================================
+         CONTEÚDO
+         A grade de vídeos é o foco do desafio: display: grid com
+         grid-template-columns e gap.
+         ================================================================== -->
+    <main class="conteudo" id="conteudo" tabindex="-1">
+      <h1 class="visualmente-oculto">Vídeos recomendados</h1>
+
+      <ul class="grade">
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-01.png" width="480" height="270"
+                   alt="Miniatura: Ciência de Dados, com o texto Geração Tech Unimed - BH">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Geração Tech Unimed - BH - Ciência de Dados</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">2,1 mil visualizações <span aria-hidden="true">•</span> Transmitido há 2 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-02.png" width="480" height="270"
+                   alt="Miniatura: Scrum Talks, com o texto sobre a trilha e o processo seletivo">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Scrum Talks</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">1,6 mil visualizações <span aria-hidden="true">•</span> Transmitido há 3 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-03.png" width="360" height="202"
+                   alt="Miniatura: Machine Learning Avançado, com o texto EY Fast Track Specialist">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Machine Learning Avançado - Fast Track</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">1,7 mil visualizações <span aria-hidden="true">•</span> Transmitido há 4 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-04.png" width="480" height="270"
+                   alt="Miniatura: Global Skills, com o texto Project Planning">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Global Skills #2 - Project Planning</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">971 visualizações <span aria-hidden="true">•</span> Transmitido há 5 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-05.png" width="360" height="202"
+                   alt="Miniatura: Como aprender a programar Python do ZERO">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Como aprender a programar Python do ZERO</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">711 visualizações <span aria-hidden="true">•</span> Transmitido há 6 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-01.png" width="480" height="270"
+                   alt="Miniatura: Ciência de Dados, com o texto Geração Tech Unimed - BH">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Geração Tech Unimed - BH - Ciência de Dados</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">2,1 mil visualizações <span aria-hidden="true">•</span> Transmitido há 2 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-02.png" width="480" height="270"
+                   alt="Miniatura: Scrum Talks, com o texto sobre a trilha e o processo seletivo">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Scrum Talks</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">1,6 mil visualizações <span aria-hidden="true">•</span> Transmitido há 3 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="card">
+            <a class="card__link" href="#">
+              <img class="card__thumb" src="assets/images/thumb-03.png" width="360" height="202"
+                   alt="Miniatura: Machine Learning Avançado, com o texto EY Fast Track Specialist">
+              <div class="card__info">
+                <img class="card__avatar" src="assets/images/avatar-canal.png" width="476" height="590" alt="">
+                <div class="card__texto">
+                  <h2 class="card__titulo">Machine Learning Avançado - Fast Track</h2>
+                  <p class="card__canal">DigitalinnovationOne</p>
+                  <p class="card__meta">1,7 mil visualizações <span aria-hidden="true">•</span> Transmitido há 4 dias</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+
+      </ul>
+    </main>
+
+  </div>
+
+  <footer class="rodape">
+    <p class="rodape__nota">
+      Projeto de estudo — clone da página de listagem do YouTube, feito com HTML e
+      CSS puro e foco em <strong>Grid Layout</strong>. Desafio de Projeto da
+      Trilha de CSS da DIO.
+    </p>
+  </footer>
+
+</body>
+</html>
