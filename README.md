@@ -27,7 +27,7 @@ trilha-css-desafio-03/
 ├── assets/
 │   ├── css/
 │   │   ├── reset.css      Normalização (53 linhas)
-│   │   └── styles.css     Estilização completa (536 linhas comentadas)
+│   │   └── styles.css     Estilização completa (548 linhas comentadas)
 │   └── images/
 │       ├── youtube-logo.png
 │       ├── avatar-canal.png
@@ -265,6 +265,74 @@ busca.
 | Imagens carregando | 10 de 10 |
 | Requisições falhadas | nenhuma |
 | Erros de JavaScript | nenhum |
+| Todas as miniaturas em 16:9 | ✅ nenhuma cortada |
+| Textos cortados com reticências | **0** |
+
+---
+
+## Dois problemas encontrados depois, numa revisão visual
+
+Os testes automáticos mediam larguras e passavam — mas eles não olhavam a
+**proporção renderizada** das imagens nem se o texto estava sendo cortado. Os
+dois problemas abaixo só apareceram numa inspeção visual:
+
+### 1. As miniaturas estavam sendo cortadas em 42%
+
+**O que acontecia:** cada miniatura aparecia quase quadrada (278×270) em vez de
+16:9 (278×156), e o `object-fit: cover` cortava **42% da largura** de cada
+imagem — as laterais dos cards, onde ficam os textos das capas, sumiam.
+
+**Causa raiz:** o `<img>` tem os atributos `width="480" height="270"`, que o
+navegador aplica como `height: 270px` (dica de apresentação). **Um `height`
+definido anula o `aspect-ratio`**, então a regra `aspect-ratio: 16 / 9` não
+fazia efeito.
+
+**Correção:** uma linha.
+
+```css
+.card__thumb {
+    width: 100%;
+    height: auto;          /* deixa o aspect-ratio mandar */
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+Depois da correção: caixa de 278×156, proporção 1,778 — igual à da imagem, sem
+nenhum corte.
+
+### 2. A linha de metadados era cortada no meio
+
+**O que acontecia:** aparecia *"2,1 mil visualizações • Transmitido."* — sem o
+"há 2 dias".
+
+**Causa raiz:** o texto tem 278px de largura natural, mas a coluna de texto do
+card tem 230px. Com `white-space: nowrap`, ele era cortado com reticências em vez
+de quebrar linha.
+
+**Correção:** remover o `nowrap` só da linha de metadados, deixando ela quebrar
+em duas linhas — que é o que o YouTube faz.
+
+```css
+.card__meta {
+    font-size: 14px;
+    color: var(--cor-texto-suave);
+    /* sem white-space: nowrap — quebra em duas linhas */
+}
+```
+
+O nome do canal mantém o `nowrap`, porque é curto e não deve quebrar.
+
+### O que isso mudou no layout
+
+| Medida | Antes | Depois |
+| --- | --- | --- |
+| Miniatura | 278×270 | **278×156** |
+| Proporção da miniatura | 1,030 | **1,778** |
+| Corte da imagem | 42% da largura | **nenhum** |
+| Altura do card | 371px | **~261px** |
+| Metadados | cortados | **completos** |
+| Textos cortados na página | 8 | **0** |
 
 ---
 

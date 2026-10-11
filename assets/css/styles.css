@@ -372,6 +372,11 @@ body {
 
 .card__thumb {
     width: 100%;
+    /* height: auto é obrigatório aqui. Os atributos width/height no <img>
+       viram height: 270px (dica de apresentação), e um height definido
+       anula o aspect-ratio: a miniatura ficava 278x270 em vez de 278x156 e
+       o object-fit: cover cortava 42% da largura de cada imagem. */
+    height: auto;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: var(--raio);
@@ -415,13 +420,20 @@ body {
     overflow: hidden;
 }
 
-.card__canal,
-.card__meta {
+.card__canal {
     font-size: 14px;
     color: var(--cor-texto-suave);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* A linha de metadados pode ser longa ("2,1 mil visualizações • Transmitido
+   há 2 dias"). Com nowrap ela era cortada no meio; aqui ela quebra em duas
+   linhas, como no YouTube. */
+.card__meta {
+    font-size: 14px;
+    color: var(--cor-texto-suave);
 }
 
 .card__meta span {
